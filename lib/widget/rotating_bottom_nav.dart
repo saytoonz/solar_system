@@ -1,4 +1,7 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+import 'package:solar_system/widget/planet_widget.dart';
 
 class RotatingBottomNav extends StatefulWidget {
   const RotatingBottomNav({super.key});
@@ -9,9 +12,7 @@ class RotatingBottomNav extends StatefulWidget {
 
 class _RotatingBottomNavState extends State<RotatingBottomNav> {
   double _angle = 0.0;
-
   double _oldAngle = 0.0;
-
   double _angleDelta = 0.0;
 
   @override
@@ -19,7 +20,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
     return Stack(
       children: [
         Positioned(
-          top: MediaQuery.of(context).size.height - 200,
+          top: (MediaQuery.of(context).size.height) - 120,
           left: 0,
           right: 0,
           child: Transform.rotate(
@@ -27,11 +28,15 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
             child: Column(
               children: [
                 Container(
-                  width: 30,
-                  height: 30,
+                  width: 250,
+                  height: 250,
                   decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(300),
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.4),
+                      width: 2,
+                    ),
                   ),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
@@ -70,27 +75,143 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                             },
                           );
                         },
+                        child: Container(
+                          width: constraints.maxWidth,
+                          height: constraints.maxHeight,
+                          margin: const EdgeInsets.all(15),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Stack(
+                                alignment: Alignment.topLeft,
+                                children: const [
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: PlanetWidget(
+                                      name: "Mercury",
+                                      color: Colors.grey,
+                                      color2: Color.fromARGB(255, 94, 93, 93),
+                                      moons: 0,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: PlanetWidget(
+                                      name: "Earth",
+                                      color: Color.fromARGB(255, 5, 119, 212),
+                                      color2: Color.fromARGB(255, 5, 119, 212),
+                                      color3: Color.fromARGB(255, 76, 175, 160),
+                                      color4: Colors.white,
+                                      moons: 1,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: PlanetWidget(
+                                      name: "Jupiter",
+                                      color2: Colors.orange,
+                                      color: Colors.white,
+                                      color4: Colors.brown,
+                                      color3:
+                                          Color.fromARGB(255, 228, 173, 153),
+                                      moons: 57,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: PlanetWidget(
+                                      name: "Uranus",
+                                      color: Colors.blue,
+                                      color2: Colors.green,
+                                      color3: Colors.blue,
+                                      color4: Colors.green,
+                                      moons: 27,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Transform.rotate(
+                                angle: 360 - 45,
+                                child: Stack(
+                                  alignment: Alignment.topLeft,
+                                  children: const [
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: PlanetWidget(
+                                        name: "Venus",
+                                        color2: Colors.grey,
+                                        color: Colors.brown,
+                                        moons: 0,
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: PlanetWidget(
+                                        name: "Mars",
+                                        color: Colors.red,
+                                        color2: Colors.brown,
+                                        color3:
+                                            Color.fromARGB(255, 228, 173, 153),
+                                        color4:
+                                            Color.fromARGB(255, 253, 124, 114),
+                                        moons: 2,
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: PlanetWidget(
+                                        name: "Saturn",
+                                        color:
+                                            Color.fromARGB(255, 248, 182, 40),
+                                        color2: Colors.brown,
+                                        color3: Colors.blueGrey,
+                                        color4:
+                                            Color.fromARGB(255, 248, 182, 40),
+                                        moons: 63,
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomLeft,
+                                      child: PlanetWidget(
+                                        name: "Neptune",
+                                        color: Colors.blue,
+                                        color2:
+                                            Color.fromARGB(255, 87, 176, 249),
+                                        color3:
+                                            Color.fromARGB(255, 142, 204, 255),
+                                        color4:
+                                            Color.fromARGB(255, 181, 220, 253),
+                                        moons: 14,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       );
                     },
-                  ),
-                ),
-                Container(
-                  height: 0,
-                  width: 5,
-                  color: Colors.black,
-                ),
-                Container(
-                  height: 300,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(200),
                   ),
                 ),
               ],
             ),
           ),
-        )
+        ),
+        Positioned(
+          top: (MediaQuery.of(context).size.height) - 80,
+          // left: 0,
+          right: (MediaQuery.of(context).size.width / 2) - 80,
+          child: SizedBox(
+            height: 80,
+            width: 160,
+            child: Center(
+              child: Text(
+                (_angle * math.pi).round().toString(),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
