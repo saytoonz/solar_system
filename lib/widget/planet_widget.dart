@@ -5,7 +5,19 @@ import 'package:provider/provider.dart';
 import 'package:solar_system/utils/app_colors.dart';
 
 class PlanetWidget extends StatefulWidget {
-  const PlanetWidget({super.key});
+  const PlanetWidget({
+    super.key,
+    this.moons = 0,
+    this.color = AppColors.black,
+    this.color2 = AppColors.black,
+    this.color3 = AppColors.black,
+    this.color4 = AppColors.black,
+    this.name = "Mercury",
+  });
+
+  final int moons;
+  final Color color, color2, color3, color4;
+  final String name;
 
   @override
   State<PlanetWidget> createState() => _PlanetWidgetState();
@@ -52,37 +64,75 @@ class _PlanetWidgetState extends State<PlanetWidget>
               Container(
                 height: 30,
                 width: 30,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      AppColors.white,
-                      Colors.blue,
+                      widget.color4,
+                      widget.color3,
+                      widget.color2,
+                      widget.color,
                     ],
                   ),
                 ),
               ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Container(
-                  height: 8,
-                  width: 8,
-                  decoration: const BoxDecoration(
-                    color: AppColors.black,
-                    shape: BoxShape.circle,
+              Visibility(
+                visible: widget.moons > 0,
+                child: Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    height: 8,
+                    width: 8,
+                    decoration: const BoxDecoration(
+                      color: AppColors.black,
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                child: Container(
-                  height: 8,
-                  width: 8,
-                  decoration: const BoxDecoration(
-                    color: AppColors.black,
-                    shape: BoxShape.circle,
+              Visibility(
+                visible: widget.moons > 1,
+                child: Positioned(
+                  bottom: 0,
+                  left: 0,
+                  child: Container(
+                    height: 8,
+                    width: 8,
+                    decoration: const BoxDecoration(
+                      color: AppColors.black,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: widget.moons > 2,
+                child: Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    height: 8,
+                    width: 8,
+                    decoration: const BoxDecoration(
+                      color: AppColors.black,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: widget.moons > 3,
+                child: Positioned(
+                  top: 0,
+                  left: 0,
+                  child: Container(
+                    height: 8,
+                    width: 8,
+                    decoration: const BoxDecoration(
+                      color: AppColors.black,
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
               ),
