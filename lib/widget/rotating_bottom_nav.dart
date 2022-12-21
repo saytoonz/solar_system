@@ -15,6 +15,8 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
   double _oldAngle = 0.0;
   double _angleDelta = 0.0;
 
+  String _planet = "";
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -68,6 +70,37 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                           final touchPositionFromCenter =
                               details.localPosition - centerOfGestureDetector;
 
+                          double piAngle = double.parse(
+                              (_angle * math.pi).toStringAsFixed(2));
+
+                          if ((piAngle > 1.5 && piAngle < 3.5) ||
+                              (piAngle > 20.5 && piAngle < 22.5)) {
+                            _planet = "Mercury\n$piAngle";
+                          } else if ((piAngle > -1 && piAngle < 1.5) ||
+                              (piAngle > -39 && piAngle < -38) ||
+                              (piAngle > 18.8 && piAngle < 20.5) ||
+                              (piAngle > 38 && piAngle < 41)) {
+                            _planet = "Venus\n$piAngle";
+                          } else if ((piAngle > 16.5 && piAngle < 18.8)) {
+                            _planet = "Earth\n$piAngle";
+                          } else if ((piAngle > 13.5 && piAngle < 16.5)) {
+                            _planet = "Mars\n$piAngle";
+                          } else if ((piAngle > 10.8 && piAngle < 13.5)) {
+                            _planet = "Jupiter\n$piAngle";
+                          } else if ((piAngle > 8.5 && piAngle < 10.8) ||
+                              (piAngle > 27.5 && piAngle < 29.5)) {
+                            _planet = "Saturn\n$piAngle";
+                          } else if ((piAngle > 6.5 && piAngle < 8.5) ||
+                              (piAngle > 25.5 && piAngle < 27.5)) {
+                            _planet = "Uranus\n$piAngle";
+                          } else if ((piAngle > 3.5 && piAngle < 5.8) ||
+                              (piAngle > 4.5 && piAngle < 6.5) ||
+                              (piAngle > 22.5 && piAngle < 25.5)) {
+                            _planet = "Neptune\n$piAngle";
+                          } else {
+                            _planet = "\n$piAngle";
+                          }
+
                           setState(
                             () {
                               _angle = touchPositionFromCenter.direction +
@@ -84,25 +117,31 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                             children: [
                               Stack(
                                 alignment: Alignment.topLeft,
-                                children: const [
+                                children: [
                                   Align(
                                     alignment: Alignment.topLeft,
                                     child: PlanetWidget(
                                       name: "Mercury",
                                       color: Colors.grey,
-                                      color2: Color.fromARGB(255, 94, 93, 93),
+                                      color2:
+                                          const Color.fromARGB(255, 94, 93, 93),
                                       moons: 0,
+                                      showPlanet: _planet == "Mercury",
                                     ),
                                   ),
                                   Align(
                                     alignment: Alignment.topRight,
                                     child: PlanetWidget(
                                       name: "Earth",
-                                      color: Color.fromARGB(255, 5, 119, 212),
-                                      color2: Color.fromARGB(255, 5, 119, 212),
-                                      color3: Color.fromARGB(255, 76, 175, 160),
+                                      color: const Color.fromARGB(
+                                          255, 5, 119, 212),
+                                      color2: const Color.fromARGB(
+                                          255, 5, 119, 212),
+                                      color3: const Color.fromARGB(
+                                          255, 76, 175, 160),
                                       color4: Colors.white,
                                       moons: 1,
+                                      showPlanet: _planet == "Earth",
                                     ),
                                   ),
                                   Align(
@@ -112,9 +151,10 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                                       color2: Colors.orange,
                                       color: Colors.white,
                                       color4: Colors.brown,
-                                      color3:
-                                          Color.fromARGB(255, 228, 173, 153),
+                                      color3: const Color.fromARGB(
+                                          255, 228, 173, 153),
                                       moons: 57,
+                                      showPlanet: _planet == "Jupiter",
                                     ),
                                   ),
                                   Align(
@@ -126,6 +166,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                                       color3: Colors.blue,
                                       color4: Colors.green,
                                       moons: 27,
+                                      showPlanet: _planet == "Uranus",
                                     ),
                                   ),
                                 ],
@@ -134,7 +175,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                                 angle: 360 - 45,
                                 child: Stack(
                                   alignment: Alignment.topLeft,
-                                  children: const [
+                                  children: [
                                     Align(
                                       alignment: Alignment.topLeft,
                                       child: PlanetWidget(
@@ -142,6 +183,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                                         color2: Colors.grey,
                                         color: Colors.brown,
                                         moons: 0,
+                                        showPlanet: _planet == "Venus",
                                       ),
                                     ),
                                     Align(
@@ -150,24 +192,26 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                                         name: "Mars",
                                         color: Colors.red,
                                         color2: Colors.brown,
-                                        color3:
-                                            Color.fromARGB(255, 228, 173, 153),
-                                        color4:
-                                            Color.fromARGB(255, 253, 124, 114),
+                                        color3: const Color.fromARGB(
+                                            255, 228, 173, 153),
+                                        color4: const Color.fromARGB(
+                                            255, 253, 124, 114),
                                         moons: 2,
+                                        showPlanet: _planet == "Mars",
                                       ),
                                     ),
                                     Align(
                                       alignment: Alignment.bottomRight,
                                       child: PlanetWidget(
                                         name: "Saturn",
-                                        color:
-                                            Color.fromARGB(255, 248, 182, 40),
+                                        color: const Color.fromARGB(
+                                            255, 248, 182, 40),
                                         color2: Colors.brown,
                                         color3: Colors.blueGrey,
-                                        color4:
-                                            Color.fromARGB(255, 248, 182, 40),
+                                        color4: const Color.fromARGB(
+                                            255, 248, 182, 40),
                                         moons: 63,
+                                        showPlanet: _planet == "Saturn",
                                       ),
                                     ),
                                     Align(
@@ -175,13 +219,14 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                                       child: PlanetWidget(
                                         name: "Neptune",
                                         color: Colors.blue,
-                                        color2:
-                                            Color.fromARGB(255, 87, 176, 249),
-                                        color3:
-                                            Color.fromARGB(255, 142, 204, 255),
-                                        color4:
-                                            Color.fromARGB(255, 181, 220, 253),
+                                        color2: const Color.fromARGB(
+                                            255, 87, 176, 249),
+                                        color3: const Color.fromARGB(
+                                            255, 142, 204, 255),
+                                        color4: const Color.fromARGB(
+                                            255, 181, 220, 253),
                                         moons: 14,
+                                        showPlanet: _planet == "Neptune",
                                       ),
                                     ),
                                   ],
@@ -207,7 +252,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
             width: 160,
             child: Center(
               child: Text(
-                (_angle * math.pi).round().toString(),
+                _planet,
               ),
             ),
           ),
