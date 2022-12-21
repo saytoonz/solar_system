@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:solar_system/widget/planet_widget.dart';
 
+import '../utils/app_colors.dart';
+
 class RotatingBottomNav extends StatefulWidget {
   const RotatingBottomNav({super.key});
 
@@ -73,44 +75,51 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                           double piAngle = double.parse(
                               (_angle * math.pi).toStringAsFixed(2));
 
-                          if ((piAngle > -17.8 && piAngle < -15.5) ||
+                          if ((piAngle > -18.5 && piAngle < -15.5) ||
+                              // (piAngle > -39 && piAngle < -38) ||
                               (piAngle > 1.5 && piAngle < 3.5) ||
                               (piAngle > 20.5 && piAngle < 22.5)) {
-                            _planet = "Mercury\n$piAngle";
+                            _planet = "Mercury";
                           } else if ((piAngle > -1.5 && piAngle < 1.5) ||
+                              (piAngle > -21.5 && piAngle < -18.5) ||
                               (piAngle > -39 && piAngle < -38) ||
                               (piAngle > 18.8 && piAngle < 20.5) ||
                               (piAngle > 38 && piAngle < 41)) {
-                            _planet = "Venus\n$piAngle";
+                            _planet = "Venus";
                           } else if ((piAngle > -3.5 && piAngle < -1.5) ||
+                              (piAngle > -23.8 && piAngle < -21.5) ||
                               (piAngle > 16.5 && piAngle < 18.8) ||
                               (piAngle > 35.5 && piAngle < 38)) {
-                            _planet = "Earth\n$piAngle";
+                            _planet = "Earth";
                           } else if ((piAngle > -5.8 && piAngle < -3.5) ||
                               (piAngle > 13.5 && piAngle < 16.5) ||
+                              (piAngle > -25.5 && piAngle < -23.8) ||
                               (piAngle > 33.5 && piAngle < 35.5)) {
-                            _planet = "Mars\n$piAngle";
+                            _planet = "Mars";
                           } else if ((piAngle > -8.5 && piAngle < -5.8) ||
+                              (piAngle > -27.5 && piAngle < -25.5) ||
                               (piAngle > 10.8 && piAngle < 13.5) ||
                               (piAngle > 30.5 && piAngle < 33.5)) {
-                            _planet = "Jupiter\n$piAngle";
+                            _planet = "Jupiter";
                           } else if ((piAngle > -10.8 && piAngle < -8.5) ||
+                              (piAngle > -30.8 && piAngle < -27.5) ||
                               (piAngle > 8.5 && piAngle < 10.8) ||
                               (piAngle > 27.5 && piAngle < 29.5) ||
                               (piAngle > 28.5 && piAngle < 30.5)) {
-                            _planet = "Saturn\n$piAngle";
+                            _planet = "Saturn";
                           } else if ((piAngle > -13.5 && piAngle < -10.8) ||
+                              (piAngle > -32.5 && piAngle < -30.8) ||
                               (piAngle > 6.5 && piAngle < 8.5) ||
                               (piAngle > 25.5 && piAngle < 27.5)) {
-                            _planet = "Uranus\n$piAngle";
+                            _planet = "Uranus";
                           } else if ((piAngle > -15.5 && piAngle < -13.5) ||
                               (piAngle > 3.5 && piAngle < 5.8) ||
                               (piAngle > 4.5 && piAngle < 6.5) ||
                               (piAngle > 22.5 && piAngle < 25.5) ||
                               (piAngle > 45.5 && piAngle < 43.8)) {
-                            _planet = "Neptune\n$piAngle";
+                            _planet = "Neptune";
                           } else {
-                            _planet = "\n$piAngle";
+                            _planet = "$piAngle";
                           }
 
                           setState(
@@ -263,8 +272,29 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
             height: 80,
             width: 160,
             child: Center(
-              child: Text(
-                _planet,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    _planet,
+                    style: const TextStyle(
+                      color: AppColors.grey,
+                      fontSize: 22,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: 3,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                      color: AppColors.grey,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
