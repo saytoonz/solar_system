@@ -13,11 +13,13 @@ class PlanetWidget extends StatefulWidget {
     this.color3 = AppColors.black,
     this.color4 = AppColors.black,
     this.name = "Mercury",
+    required this.showPlanet,
   });
 
   final int moons;
   final Color color, color2, color3, color4;
   final String name;
+  final bool showPlanet;
 
   @override
   State<PlanetWidget> createState() => _PlanetWidgetState();
@@ -77,7 +79,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
                 ),
               ),
               Visibility(
-                visible: widget.moons > 0,
+                visible: widget.moons > 0 && widget.showPlanet,
                 child: Positioned(
                   top: 0,
                   right: 0,
@@ -92,7 +94,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
                 ),
               ),
               Visibility(
-                visible: widget.moons > 1,
+                visible: widget.moons > 1 && widget.showPlanet,
                 child: Positioned(
                   bottom: 0,
                   left: 0,
@@ -107,7 +109,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
                 ),
               ),
               Visibility(
-                visible: widget.moons > 2,
+                visible: widget.moons > 2 && widget.showPlanet,
                 child: Positioned(
                   bottom: 0,
                   right: 0,
@@ -122,7 +124,7 @@ class _PlanetWidgetState extends State<PlanetWidget>
                 ),
               ),
               Visibility(
-                visible: widget.moons > 3,
+                visible: widget.moons > 3 && widget.showPlanet,
                 child: Positioned(
                   top: 0,
                   left: 0,
