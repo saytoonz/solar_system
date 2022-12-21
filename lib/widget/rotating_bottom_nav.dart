@@ -90,7 +90,8 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                               (piAngle > 33.5 && piAngle < 35.5)) {
                             _planet = "Mars\n$piAngle";
                           } else if ((piAngle > -8.5 && piAngle < -5.8) ||
-                              (piAngle > 10.8 && piAngle < 13.5)) {
+                              (piAngle > 10.8 && piAngle < 13.5) ||
+                              (piAngle > 30.5 && piAngle < 32.5)) {
                             _planet = "Jupiter\n$piAngle";
                           } else if ((piAngle > -10.8 && piAngle < -8.5) ||
                               (piAngle > 8.5 && piAngle < 10.8) ||
