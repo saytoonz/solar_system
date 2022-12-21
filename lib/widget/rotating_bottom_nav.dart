@@ -73,7 +73,8 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                           double piAngle = double.parse(
                               (_angle * math.pi).toStringAsFixed(2));
 
-                          if ((piAngle > 1.5 && piAngle < 3.5) ||
+                          if ((piAngle > -17.8 && piAngle < -15.5) ||
+                              (piAngle > 1.5 && piAngle < 3.5) ||
                               (piAngle > 20.5 && piAngle < 22.5)) {
                             _planet = "Mercury\n$piAngle";
                           } else if ((piAngle > -1.5 && piAngle < 1.5) ||
@@ -91,19 +92,22 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                             _planet = "Mars\n$piAngle";
                           } else if ((piAngle > -8.5 && piAngle < -5.8) ||
                               (piAngle > 10.8 && piAngle < 13.5) ||
-                              (piAngle > 30.5 && piAngle < 32.5)) {
+                              (piAngle > 30.5 && piAngle < 33.5)) {
                             _planet = "Jupiter\n$piAngle";
                           } else if ((piAngle > -10.8 && piAngle < -8.5) ||
                               (piAngle > 8.5 && piAngle < 10.8) ||
-                              (piAngle > 27.5 && piAngle < 29.5)) {
+                              (piAngle > 27.5 && piAngle < 29.5) ||
+                              (piAngle > 28.5 && piAngle < 30.5)) {
                             _planet = "Saturn\n$piAngle";
                           } else if ((piAngle > -13.5 && piAngle < -10.8) ||
                               (piAngle > 6.5 && piAngle < 8.5) ||
                               (piAngle > 25.5 && piAngle < 27.5)) {
                             _planet = "Uranus\n$piAngle";
-                          } else if ((piAngle > 3.5 && piAngle < 5.8) ||
+                          } else if ((piAngle > -15.5 && piAngle < -13.5) ||
+                              (piAngle > 3.5 && piAngle < 5.8) ||
                               (piAngle > 4.5 && piAngle < 6.5) ||
-                              (piAngle > 22.5 && piAngle < 25.5)) {
+                              (piAngle > 22.5 && piAngle < 25.5) ||
+                              (piAngle > 45.5 && piAngle < 43.8)) {
                             _planet = "Neptune\n$piAngle";
                           } else {
                             _planet = "\n$piAngle";
