@@ -17,7 +17,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
   double _oldAngle = 0.0;
   double _angleDelta = 0.0;
 
-  String _planet = "Earth";
+  String _planet = "Venus";
 
   @override
   Widget build(BuildContext context) {
@@ -281,7 +281,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                     _planet,
                     style: const TextStyle(
                       color: AppColors.grey,
-                      fontSize: 22,
+                      fontSize: 18,
                     ),
                   ),
                   const SizedBox(
@@ -289,7 +289,7 @@ class _RotatingBottomNavState extends State<RotatingBottomNav> {
                   ),
                   Container(
                     height: 3,
-                    width: 60,
+                    width: 50,
                     decoration: const BoxDecoration(
                       color: AppColors.grey,
                     ),
