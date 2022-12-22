@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:solar_system/utils/app_colors.dart';
 
@@ -28,6 +29,7 @@ class PlanetWidget extends StatefulWidget {
 class _PlanetWidgetState extends State<PlanetWidget>
     with TickerProviderStateMixin {
   AnimationController? _animationController;
+  AnimationController? _scaleController;
 
   @override
   void initState() {
@@ -36,8 +38,15 @@ class _PlanetWidgetState extends State<PlanetWidget>
       vsync: this,
       duration: const Duration(milliseconds: 4000),
     );
+    _scaleController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
     _animationController?.forward();
     _animationController?.repeat();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      _scaleController?.forward();
+    });
   }
 
   @override
@@ -52,9 +61,12 @@ class _PlanetWidgetState extends State<PlanetWidget>
       value: _animationController,
       child: Consumer<AnimationController>(
         builder: (context, animation, child) {
-          return Transform.rotate(
-            angle: math.pi * animation.value * 2,
-            child: child,
+          return Transform.scale(
+            scale: _scaleController?.value,
+            child: Transform.rotate(
+              angle: math.pi * animation.value * 2,
+              child: child,
+            ),
           );
         },
         child: SizedBox(
@@ -64,8 +76,8 @@ class _PlanetWidgetState extends State<PlanetWidget>
             alignment: Alignment.center,
             children: [
               Container(
-                height: 30,
-                width: 30,
+                height: widget.showPlanet ? 35 : 25,
+                width: widget.showPlanet ? 35 : 25,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
